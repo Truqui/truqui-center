@@ -27,3 +27,5 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
       - run: mypy .
+        env:
+          SECRET_KEY: ci-dummy-secret-key
