@@ -45,6 +45,7 @@ ORM is allowed at all layers as a pragmatic exception.
 - Production orchestration is handled externally via a global docker-compose.yml
 
 ## Git
+- Never commit directly to `main` — always create a feature branch, open a PR, and merge
 - Use Conventional Commits for all commit messages
 - Format: <type>: <description>
 - Types: feat, fix, refactor, docs, test, chore
