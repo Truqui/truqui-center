@@ -17,6 +17,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 
+SITE_NAME = os.environ.get("SITE_NAME", "My Site")
+
+THEME = {
+    "background": os.environ.get("THEME_BACKGROUND", "#ffffff"),
+    "foreground": os.environ.get("THEME_FOREGROUND", "#111827"),
+    "muted": os.environ.get("THEME_MUTED", "#6b7280"),
+    "border": os.environ.get("THEME_BORDER", "#e5e7eb"),
+    "primary": os.environ.get("THEME_PRIMARY", "#111827"),
+}
+
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [h for h in os.environ.get("ALLOWED_HOSTS", "").split(",") if h]
@@ -48,13 +58,14 @@ ROOT_URLCONF = "truqui_center.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "src" / "interface" / "web" / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "src.interface.web.context_processors.site",
             ],
         },
     },

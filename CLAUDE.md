@@ -15,7 +15,9 @@ ORM is allowed at all layers as a pragmatic exception.
 - Logging: Loguru
 
 ## Structure
-- src/interface/<module>/ → HTTP, webhooks
+- src/interface/web/<module>/ → HTTP views, templates, static assets
+- src/interface/telegram/ → Telegram integration
+- src/interface/api/ → REST API (if needed)
 - src/application/<module>/ → use cases
 - src/domain/<module>/ → business logic
 - src/infrastructure/database/<module>/ → models, querysets, queries, operations
@@ -45,6 +47,7 @@ ORM is allowed at all layers as a pragmatic exception.
 - Production orchestration is handled externally via a global docker-compose.yml
 
 ## Git
+- Never commit directly to `main` — always create a feature branch, open a PR, and merge
 - Use Conventional Commits for all commit messages
 - Format: <type>: <description>
 - Types: feat, fix, refactor, docs, test, chore
