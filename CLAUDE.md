@@ -55,6 +55,9 @@ ORM is allowed at all layers as a pragmatic exception.
   1. `Prior this change ...` — what the situation was before
   2. `This change ...` — what the commit does and why
   3. `Assistant-model: <model name>` — e.g. `Assistant-model: Claude Sonnet 4.6`
+- Before each commit: show the list of staged files with `git diff --stat --cached`
+  and wait for explicit user approval before proceeding
+- Run `pre-commit run` before every commit; fix all issues before committing
 
 ## GitHub
 - When creating a PR, always follow the structure in `.github/PULL_REQUEST_TEMPLATE.md`
@@ -65,3 +68,8 @@ ORM is allowed at all layers as a pragmatic exception.
 - unit/ → without database
 - integration/ → with database
 - e2e/ → full flows
+
+## Planning
+- When starting work on a new issue, create a plan organized by commits before
+  implementing — agree with the user on the commit breakdown before writing any code
+- Before opening a PR, ask the user if they want to run the /review skill first

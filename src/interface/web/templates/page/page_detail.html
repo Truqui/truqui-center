@@ -2,7 +2,7 @@
 
 {% block banner %}
 {% if page.banner %}
-<div class="w-full overflow-hidden h-40 sm:h-52 md:h-64 lg:h-[400px]">
+<div class="w-full overflow-hidden aspect-[24/5] min-h-16">
     <img src="{{ page.banner.url }}" alt="{{ page.title }}"
          class="w-full h-full object-cover">
 </div>
