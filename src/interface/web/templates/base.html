@@ -31,8 +31,9 @@
             <div class="max-w-4xl mx-auto px-4 py-3 flex items-center gap-6">
                 <a href="/" class="font-semibold text-primary hover:opacity-75 transition-opacity">{{ site_name }}</a>
                 <div class="flex gap-4 ml-4">
-                    <a href="#" class="text-muted hover:text-foreground transition-colors">Blog</a>
-                    <a href="#" class="text-muted hover:text-foreground transition-colors">About</a>
+                    {% for item in menu_items %}
+                    <a href="{{ item.url }}" class="text-muted hover:text-foreground transition-colors">{{ item.label }}</a>
+                    {% endfor %}
                 </div>
             </div>
         </nav>
