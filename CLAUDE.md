@@ -61,6 +61,8 @@ ORM is allowed at all layers as a pragmatic exception.
 
 ## GitHub
 - When creating a PR, always follow the structure in `.github/PULL_REQUEST_TEMPLATE.md`
+- Each issue must be implemented on a dedicated feature branch, never directly on `main`
+- Merging to `main` is only allowed from GitHub, after a final manual review
 
 ## Testing
 - Mirror src/ structure inside tests/unit/, tests/integration/ and tests/e2e/
