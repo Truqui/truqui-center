@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "src.infrastructure.database.page",
+    "src.infrastructure.database.menu",
 ]
 
 MIDDLEWARE = [
