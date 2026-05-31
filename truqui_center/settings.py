@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "src.infrastructure.database.page",
     "src.infrastructure.database.menu",
+    "src.infrastructure.database.blog",
 ]
 
 MIDDLEWARE = [
