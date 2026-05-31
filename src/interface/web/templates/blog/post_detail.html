@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block banner %}
+{% if post.banner %}
+<div class="w-full overflow-hidden aspect-[24/5] min-h-16">
+    <img src="{{ post.banner.url }}" alt="{{ post.title }}"
+         class="w-full h-full object-cover">
+</div>
+{% endif %}
+{% endblock %}
+
+{% block title %}{{ post.title }} — {{ site_name }}{% endblock %}
+
+{% block content %}
+<article>
+    <h1 class="text-3xl font-bold mb-4">{{ post.title }}</h1>
+    {% if post.excerpt %}
+    <p class="text-muted mb-6">{{ post.excerpt }}</p>
+    {% endif %}
+    <div>{{ post.content|linebreaks }}</div>
+    <footer class="mt-8 text-sm text-muted">
+        {% if post.published_at %}<p>Published {{ post.published_at|date:"N j, Y" }}</p>{% endif %}
+        <p>Last updated {{ post.updated_at|date:"N j, Y" }}</p>
+    </footer>
+</article>
+{% endblock %}
