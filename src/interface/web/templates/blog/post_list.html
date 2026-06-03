@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Blog — {{ site_name }}{% endblock %}
+
+{% block banner %}
+<div class="w-full bg-primary">
+    <div class="max-w-4xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-bold text-background">Blog</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{% if posts %}
+<div class="flex flex-col gap-6">
+    {% for post in posts %}
+    <a href="{% url 'post-detail' post.slug %}" class="block border border-border rounded-lg overflow-hidden hover:border-primary transition-colors">
+        {% if post.banner %}
+        <div class="w-full overflow-hidden aspect-[24/5]">
+            <img src="{{ post.banner.url }}" alt="{{ post.title }}" loading="lazy" class="w-full h-full object-cover">
+        </div>
+        {% endif %}
+        <div class="p-6">
+            <h2 class="text-xl font-semibold mb-2">{{ post.title }}</h2>
+            {% if post.excerpt %}
+            <p class="text-muted mb-4">{{ post.excerpt }}</p>
+            {% endif %}
+            {% if post.published_at %}
+            <p class="text-sm text-muted">{{ post.published_at|date:"N j, Y" }}</p>
+            {% endif %}
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% if is_paginated %}
+<nav class="mt-8 flex justify-center gap-2">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}" class="px-4 py-2 border border-border rounded hover:border-primary transition-colors">&larr;</a>
+    {% endif %}
+    <span class="px-4 py-2 text-muted">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 border border-border rounded hover:border-primary transition-colors">&rarr;</a>
+    {% endif %}
+</nav>
+{% endif %}
+
+{% else %}
+<p class="text-muted">No hay posts publicados todavía.</p>
+{% endif %}
+{% endblock %}

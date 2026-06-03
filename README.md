@@ -40,6 +40,55 @@ The ORM is allowed at all layers as a pragmatic exception.
 
 ---
 
+## Modules
+
+### Pages
+
+Static pages are available at:
+
+| URL | View | Description |
+|---|---|---|
+| `/<slug>/` | `PageDetailView` | Full page detail |
+
+Pages are managed via the Django admin (`/admin/` → **Pages**). A page only appears on the site when `is_published` is set to `True`.
+
+#### Adding a Page to the navigation menu
+
+To expose a page in the navigation bar, create a `MenuItem` entry via the Django admin:
+
+1. Go to `/admin/` → **Menu items** → **Add menu item**.
+2. Set **Label** to the text you want in the nav (e.g. `About`).
+3. Set **URL** to `/<slug>/` matching the page slug.
+4. Set **Order** to control its position relative to other items.
+5. Make sure **Is active** is checked.
+6. Save.
+
+---
+
+### Blog
+
+Published posts are available at:
+
+| URL | View | Description |
+|---|---|---|
+| `/blog/` | `PostListView` | Paginated list of all published posts |
+| `/blog/<slug>/` | `PostDetailView` | Full post detail |
+
+Posts are managed via the Django admin (`/admin/` → **Posts**). A post only appears on the site when `is_published` is set to `True`.
+
+#### Adding the Blog to the navigation menu
+
+The navigation bar is driven by `MenuItem` records. To expose the blog page in the menu, create an entry manually via the Django admin:
+
+1. Go to `/admin/` → **Menu items** → **Add menu item**.
+2. Set **Label** to the text you want in the nav (e.g. `Blog`).
+3. Set **URL** to `/blog/`.
+4. Set **Order** to control its position relative to other items.
+5. Make sure **Is active** is checked.
+6. Save.
+
+---
+
 ## Local development with Docker
 
 ### Prerequisites
