@@ -23,8 +23,8 @@ from django.urls import URLPattern, URLResolver, include, path
 urlpatterns: list[URLPattern | URLResolver] = [
     path("admin/", admin.site.urls),
     path("", include("src.interface.web.urls")),
-    path("", include("src.interface.web.page.urls")),
     path("blog/", include("src.interface.web.blog.urls")),
+    path("", include("src.interface.web.page.urls")),
 ]
 
 if settings.DEBUG:
