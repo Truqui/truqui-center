@@ -60,3 +60,4 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_HOST: localhost
           POSTGRES_PORT: "5432"
+          SECURE_SSL_REDIRECT: "False"
