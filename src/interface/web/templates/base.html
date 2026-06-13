@@ -5,22 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ site_name }}{% endblock %}</title>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              background: '{{ theme.background }}',
-              foreground: '{{ theme.foreground }}',
-              muted: '{{ theme.muted }}',
-              border: '{{ theme.border }}',
-              primary: '{{ theme.primary }}',
-            }
-          }
-        }
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {# Overrides the default CSS vars from styles.css with values from THEME_* env vars #}
+    <style>
+      :root {
+        --color-background: {{ theme.background }};
+        --color-foreground: {{ theme.foreground }};
+        --color-muted: {{ theme.muted }};
+        --color-border: {{ theme.border }};
+        --color-primary: {{ theme.primary }};
       }
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    </style>
     <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 </head>
