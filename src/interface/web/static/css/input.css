@@ -1,3 +1,20 @@
+/*
+ * Single entry point for all project CSS.
+ *
+ * Tailwind scans the templates defined in @source and generates utility
+ * classes for every class it finds. The @theme block defines the custom
+ * color tokens used throughout the project; their actual values are
+ * overridden at runtime via THEME_* environment variables (see base.html).
+ *
+ * To add custom CSS — whether hand-written or imported from a third-party
+ * library — add it below the @theme block. It will be included in the
+ * compiled styles.css output.
+ *
+ * Rebuild after any change:
+ *   make css        (single build, minified)
+ *   make css-watch  (watch mode, rebuilds on every template/CSS change)
+ */
+
 @import "tailwindcss";
 
 @source "../../templates";

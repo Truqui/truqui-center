@@ -89,6 +89,33 @@ The navigation bar is driven by `MenuItem` records. To expose the blog page in t
 
 ---
 
+## CSS development
+
+Tailwind CSS is compiled ahead of time — the project does **not** use the Tailwind CDN. The compiled stylesheet is committed to the repository at `src/interface/web/static/css/styles.css`.
+
+### When to rebuild
+
+Rebuild `styles.css` whenever you:
+
+- Add a new Tailwind utility class to a template.
+- Change the `@theme` color tokens in `input.css`.
+- Add custom CSS or import a third-party CSS library.
+
+### How to rebuild
+
+```bash
+make css        # single build (minified)
+make css-watch  # watch mode — rebuilds automatically on every change
+```
+
+The first run downloads the Tailwind CLI binary to `/tmp/` automatically. No Node.js required.
+
+### Adding custom CSS
+
+All CSS goes through `src/interface/web/static/css/input.css`. Add hand-written styles or `@import` statements for third-party libraries below the `@theme` block — they will be included in the compiled output.
+
+---
+
 ## Local development with Docker
 
 ### Prerequisites
@@ -131,6 +158,12 @@ The navigation bar is driven by `MenuItem` records. To expose the blog page in t
 | `POSTGRES_PASSWORD` | — | Yes | Database password |
 | `POSTGRES_HOST` | `localhost` | No | Database host (`db` inside Docker) |
 | `POSTGRES_PORT` | `5432` | No | Database port |
+| `SITE_NAME` | `My Site` | No | Site name shown in the nav and page title |
+| `THEME_BACKGROUND` | `#ffffff` | No | Background colour |
+| `THEME_FOREGROUND` | `#111827` | No | Default text colour |
+| `THEME_MUTED` | `#6b7280` | No | Muted text colour |
+| `THEME_BORDER` | `#e5e7eb` | No | Border colour |
+| `THEME_PRIMARY` | `#111827` | No | Primary/brand colour |
 
 ---
 
