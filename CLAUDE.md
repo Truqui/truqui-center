@@ -15,21 +15,21 @@ ORM is allowed at all layers as a pragmatic exception.
 - Logging: Loguru
 
 ## Structure
-- src/interface/web/<module>/ → HTTP views, templates, static assets
+- src/interface/web/{module}/ → HTTP views, templates, static assets
 - src/interface/telegram/ → Telegram integration
 - src/interface/api/ → REST API (if needed)
-- src/application/<module>/ → use cases
-- src/domain/<module>/ → business logic
-- src/infrastructure/database/<module>/ → models, querysets, queries, operations
+- src/application/{module}/ → use cases
+- src/domain/{module}/ → business logic
+- src/infrastructure/database/{module}/ → models, querysets, queries, operations
 - src/infrastructure/external/ → Telegram
-- tests/unit/application/<module>/ → without database
-- tests/integration/<module>/ → with database
+- tests/unit/application/{module}/ → without database
+- tests/integration/{module}/ → with database
 - tests/e2e/ → end-to-end tests
 
 ## Conventions
-- Use cases go in application/<module>/<verb>_<noun>.py (e.g. create_post.py)
-- Complex queries → infrastructure/database/<module>/queries.py
-- Complex writes → infrastructure/database/<module>/operations.py
+- Use cases go in application/{module}/{verb}_{noun}.py (e.g. create_post.py)
+- Complex queries → infrastructure/database/{module}/queries.py
+- Complex writes → infrastructure/database/{module}/operations.py
 - HTMX → server communication
 - Alpine.js → local UI interactivity only
 - Tailwind CSS → all styling, no custom CSS unless strictly necessary
@@ -49,7 +49,7 @@ ORM is allowed at all layers as a pragmatic exception.
 ## Git
 - Never commit directly to `main` — always create a feature branch, open a PR, and merge
 - Use Conventional Commits for all commit messages
-- Format: <type>: <description>
+- Format: `{type}: {description}`
 - Types: feat, fix, refactor, docs, test, chore
 - Commit body must include three paragraphs:
   1. `Prior this change ...` — what the situation was before
@@ -58,6 +58,7 @@ ORM is allowed at all layers as a pragmatic exception.
 - Before each commit: show the list of staged files with `git diff --stat --cached`
   and wait for explicit user approval before proceeding
 - Run `pre-commit run` before every commit; fix all issues before committing
+- Prefer small, focused commits — one logical change per commit; when two changes are independent (even if similar), split them into separate commits
 
 ## GitHub
 - When creating a PR, always follow the structure in `.github/PULL_REQUEST_TEMPLATE.md`
@@ -66,7 +67,7 @@ ORM is allowed at all layers as a pragmatic exception.
 
 ## Testing
 - Mirror src/ structure inside tests/unit/, tests/integration/ and tests/e2e/
-- Test files are named test_<source_filename>.py
+- Test files are named test_{source_filename}.py
 - unit/ → without database
 - integration/ → with database
 - e2e/ → full flows
