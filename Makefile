@@ -13,3 +13,10 @@ css: $(TAILWIND_BIN)
 .PHONY: css-watch
 css-watch: $(TAILWIND_BIN)
 	$(TAILWIND_BIN) --input $(TAILWIND_INPUT) --output $(TAILWIND_OUTPUT) --watch
+
+HTMX_VERSION = 2.0.4
+JS_DIR = src/interface/web/static/js
+
+.PHONY: vendor-htmx
+vendor-htmx:
+	curl -sL https://unpkg.com/htmx.org@$(HTMX_VERSION)/dist/htmx.min.js -o $(JS_DIR)/htmx.min.js
