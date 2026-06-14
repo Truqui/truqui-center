@@ -13,3 +13,15 @@ css: $(TAILWIND_BIN)
 .PHONY: css-watch
 css-watch: $(TAILWIND_BIN)
 	$(TAILWIND_BIN) --input $(TAILWIND_INPUT) --output $(TAILWIND_OUTPUT) --watch
+
+HTMX_VERSION = 2.0.4
+ALPINE_VERSION = 3.14.8
+JS_DIR = src/interface/web/static/js
+
+.PHONY: vendor-htmx
+vendor-htmx:
+	curl -sL https://unpkg.com/htmx.org@$(HTMX_VERSION)/dist/htmx.min.js -o $(JS_DIR)/htmx.min.js
+
+.PHONY: vendor-alpine
+vendor-alpine:
+	curl -sL https://cdn.jsdelivr.net/npm/alpinejs@$(ALPINE_VERSION)/dist/cdn.min.js -o $(JS_DIR)/alpine.min.js
