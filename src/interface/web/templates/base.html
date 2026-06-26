@@ -23,6 +23,8 @@
         color: var(--color-surface-fg);
         border-color: var(--color-surface-border);
       }
+      nav a.nav-item { opacity: 0.75; transition: opacity 0.15s; }
+      nav a.nav-item:hover, nav a.nav-item.active { opacity: 1; }
     </style>
     <script src="{% static 'js/htmx.min.js' %}"></script>
     <script defer src="{% static 'js/alpine.min.js' %}"></script>
@@ -35,7 +37,7 @@
                 <a href="/" class="font-semibold hover:opacity-75 transition-opacity">{{ site_name }}</a>
                 <div class="flex gap-4 ml-4">
                     {% for item in menu_items %}
-                    <a href="{{ item.url }}" class="text-muted hover:text-foreground transition-colors">{{ item.label }}</a>
+                    <a href="{{ item.url }}" class="nav-item{% if request.path == item.url %} active{% endif %}">{{ item.label }}</a>
                     {% endfor %}
                 </div>
             </div>
