@@ -26,6 +26,8 @@ THEME = {
     "border": os.environ.get("THEME_BORDER", "#e5e7eb"),
     "primary": os.environ.get("THEME_PRIMARY", "#111827"),
     "surface_border": os.environ.get("THEME_SURFACE_BORDER", "#e5e7eb"),
+    "surface": os.environ.get("THEME_SURFACE", "#555555"),
+    "surface_fg": os.environ.get("THEME_SURFACE_FG", "#ffffff"),
 }
 
 DEBUG = os.environ.get("DEBUG", "False") == "True"

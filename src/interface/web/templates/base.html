@@ -15,6 +15,13 @@
         --color-border: {{ theme.border }};
         --color-primary: {{ theme.primary }};
         --color-surface-border: {{ theme.surface_border }};
+        --color-surface: {{ theme.surface }};
+        --color-surface-fg: {{ theme.surface_fg }};
+      }
+      nav, footer {
+        background-color: var(--color-surface);
+        color: var(--color-surface-fg);
+        border-color: var(--color-surface-border);
       }
     </style>
     <script src="{% static 'js/htmx.min.js' %}"></script>
@@ -23,9 +30,9 @@
 <body class="bg-background text-foreground min-h-screen flex flex-col">
 
     <header>
-        <nav class="border-b" style="border-color: var(--color-surface-border)">
+        <nav class="border-b">
             <div class="max-w-4xl mx-auto px-4 py-3 flex items-center gap-6">
-                <a href="/" class="font-semibold text-primary hover:opacity-75 transition-opacity">{{ site_name }}</a>
+                <a href="/" class="font-semibold hover:opacity-75 transition-opacity">{{ site_name }}</a>
                 <div class="flex gap-4 ml-4">
                     {% for item in menu_items %}
                     <a href="{{ item.url }}" class="text-muted hover:text-foreground transition-colors">{{ item.label }}</a>
@@ -41,10 +48,10 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="border-t border-solid mt-auto" style="border-color: var(--color-surface-border)">
+    <footer class="border-t border-solid mt-auto">
         <div class="max-w-4xl mx-auto px-4 py-6">
             {% block footer %}
-            <p class="text-center text-muted text-sm">&copy; {{ site_name }}</p>
+            <p class="text-center text-sm opacity-75">&copy; {{ site_name }}</p>
             {% endblock %}
         </div>
     </footer>
