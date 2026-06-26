@@ -25,6 +25,7 @@ THEME = {
     "muted": os.environ.get("THEME_MUTED", "#6b7280"),
     "border": os.environ.get("THEME_BORDER", "#e5e7eb"),
     "primary": os.environ.get("THEME_PRIMARY", "#111827"),
+    "surface_border": os.environ.get("THEME_SURFACE_BORDER", "#e5e7eb"),
 }
 
 DEBUG = os.environ.get("DEBUG", "False") == "True"
