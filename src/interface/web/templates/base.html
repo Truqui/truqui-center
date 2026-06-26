@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ site_name }}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
     {# Overrides the default CSS vars from styles.css with values from THEME_* env vars #}
     <style>
       :root {
@@ -14,7 +15,19 @@
         --color-muted: {{ theme.muted }};
         --color-border: {{ theme.border }};
         --color-primary: {{ theme.primary }};
+        --color-surface-border: {{ theme.surface_border }};
+        --color-surface: {{ theme.surface }};
+        --color-surface-fg: {{ theme.surface_fg }};
+        {% if theme.font_family %}--default-font-family: {{ theme.font_family }};{% endif %}
       }
+      nav, footer {
+        background-color: var(--color-surface);
+        color: var(--color-surface-fg);
+        border-color: var(--color-surface-border);
+      }
+      nav a.nav-item { opacity: 0.75; transition: opacity 0.15s; }
+      nav a.nav-item:hover, nav a.nav-item.active { opacity: 1; }
+      nav > div { border-color: var(--color-surface-border); }
     </style>
     <script src="{% static 'js/htmx.min.js' %}"></script>
     <script defer src="{% static 'js/alpine.min.js' %}"></script>
@@ -22,14 +35,27 @@
 <body class="bg-background text-foreground min-h-screen flex flex-col">
 
     <header>
-        <nav class="border-b border-border">
-            <div class="max-w-4xl mx-auto px-4 py-3 flex items-center gap-6">
-                <a href="/" class="font-semibold text-primary hover:opacity-75 transition-opacity">{{ site_name }}</a>
-                <div class="flex gap-4 ml-4">
+        <nav class="border-b" x-data="{ open: false }">
+            <div class="max-w-4xl mx-auto px-4 py-3 flex items-center">
+                <a href="/" class="font-semibold hover:opacity-75 transition-opacity">{{ site_name }}</a>
+                <div class="hidden md:flex gap-4 ml-4">
                     {% for item in menu_items %}
-                    <a href="{{ item.url }}" class="text-muted hover:text-foreground transition-colors">{{ item.label }}</a>
+                    <a href="{{ item.url }}" class="nav-item{% if request.path == item.url %} active{% endif %}">{{ item.label }}</a>
                     {% endfor %}
                 </div>
+                <button class="md:hidden ml-auto" @click="open = !open" aria-label="Menú">
+                    <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div x-show="open" class="md:hidden border-t px-4 py-3 flex flex-col gap-3">
+                {% for item in menu_items %}
+                <a href="{{ item.url }}" class="nav-item{% if request.path == item.url %} active{% endif %}">{{ item.label }}</a>
+                {% endfor %}
             </div>
         </nav>
     </header>
@@ -40,10 +66,10 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="border-t border-border mt-auto">
+    <footer class="border-t border-solid mt-auto">
         <div class="max-w-4xl mx-auto px-4 py-6">
             {% block footer %}
-            <p class="text-center text-muted text-sm">&copy; {{ site_name }}</p>
+            <p class="text-center text-sm opacity-75">&copy; {{ site_name }}</p>
             {% endblock %}
         </div>
     </footer>

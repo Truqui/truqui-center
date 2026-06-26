@@ -25,3 +25,13 @@ vendor-htmx:
 .PHONY: vendor-alpine
 vendor-alpine:
 	curl -sL https://cdn.jsdelivr.net/npm/alpinejs@$(ALPINE_VERSION)/dist/cdn.min.js -o $(JS_DIR)/alpine.min.js
+
+INTER_VERSION = 5.1.1
+FONTS_DIR = src/interface/web/static/fonts
+
+.PHONY: vendor-fonts
+vendor-fonts:
+	mkdir -p $(FONTS_DIR)
+	curl -sL https://cdn.jsdelivr.net/npm/@fontsource/inter@$(INTER_VERSION)/files/inter-latin-400-normal.woff2 -o $(FONTS_DIR)/inter-400.woff2
+	curl -sL https://cdn.jsdelivr.net/npm/@fontsource/inter@$(INTER_VERSION)/files/inter-latin-600-normal.woff2 -o $(FONTS_DIR)/inter-600.woff2
+	curl -sL https://cdn.jsdelivr.net/npm/@fontsource/inter@$(INTER_VERSION)/files/inter-latin-700-normal.woff2 -o $(FONTS_DIR)/inter-700.woff2
