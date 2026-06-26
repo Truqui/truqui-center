@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ site_name }}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
     {# Overrides the default CSS vars from styles.css with values from THEME_* env vars #}
     <style>
       :root {
@@ -17,6 +18,7 @@
         --color-surface-border: {{ theme.surface_border }};
         --color-surface: {{ theme.surface }};
         --color-surface-fg: {{ theme.surface_fg }};
+        {% if theme.font_family %}--default-font-family: {{ theme.font_family }};{% endif %}
       }
       nav, footer {
         background-color: var(--color-surface);
