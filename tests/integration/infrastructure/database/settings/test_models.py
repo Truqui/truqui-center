@@ -27,6 +27,11 @@ class SiteSettingsTest(TestCase):
         settings.delete()
         self.assertEqual(SiteSettings.objects.count(), 1)
 
+    def test_queryset_bulk_delete_is_a_noop(self) -> None:
+        SiteSettings.get()
+        SiteSettings.objects.all().delete()
+        self.assertEqual(SiteSettings.objects.count(), 1)
+
     def test_home_page_can_be_set(self) -> None:
         page = Page.objects.create(
             title="About",

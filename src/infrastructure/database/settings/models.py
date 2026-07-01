@@ -3,6 +3,12 @@ from typing import Any
 from django.db import models
 
 
+class SiteSettingsQuerySet(models.QuerySet["SiteSettings"]):
+    def delete(self) -> tuple[int, dict[str, int]]:
+        # Prevent bulk deletion to preserve the singleton row.
+        return 0, {}
+
+
 class SiteSettings(models.Model):
     """Singleton model for site-wide configuration. Only one row is ever stored."""
 
@@ -22,6 +28,8 @@ class SiteSettings(models.Model):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+
+    objects = SiteSettingsQuerySet.as_manager()
 
     class Meta:
         verbose_name = "Site settings"
