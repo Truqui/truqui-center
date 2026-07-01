@@ -2,6 +2,7 @@ from django.db.models import QuerySet
 from django.views.generic import DetailView, ListView
 
 from src.infrastructure.database.blog.models import Post
+from src.infrastructure.database.blog.queries import get_published_posts
 
 
 class PostListView(ListView):  # type: ignore[type-arg]
@@ -10,7 +11,7 @@ class PostListView(ListView):  # type: ignore[type-arg]
     paginate_by = 5
 
     def get_queryset(self) -> QuerySet[Post]:
-        return Post.objects.filter(is_published=True)
+        return get_published_posts()
 
 
 class PostDetailView(DetailView):  # type: ignore[type-arg]
