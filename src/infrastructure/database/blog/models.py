@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models import F
 
 
 class Post(models.Model):
@@ -12,9 +11,6 @@ class Post(models.Model):
     published_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = [F("published_at").desc(nulls_last=True)]
 
     def __str__(self) -> str:
         return self.title
