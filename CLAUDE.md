@@ -55,7 +55,8 @@ ORM is allowed at all layers as a pragmatic exception.
   1. `Prior this change ...` — what the situation was before
   2. `This change ...` — what the commit does and why
   3. `Assistant-model: <model name>` — e.g. `Assistant-model: Claude Sonnet 4.6`
-- Before each commit: show the list of staged files with `git diff --stat --cached`
+- Before each commit — including `git commit --amend` or any other operation
+  that creates or rewrites a commit — show the list of staged/changed files
   and wait for explicit user approval before proceeding
 - Run `pre-commit run` before every commit; fix all issues before committing
 - Prefer small, focused commits — one logical change per commit; when two changes are independent (even if similar), split them into separate commits
