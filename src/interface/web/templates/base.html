@@ -37,7 +37,7 @@
 
     <header>
         <nav class="border-b" x-data="{ open: false }">
-            <div class="max-w-4xl mx-auto px-4 py-3 flex items-center">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex items-center">
                 <a href="/" class="font-semibold hover:opacity-75 transition-opacity">{{ site_name }}</a>
                 <div class="hidden md:flex gap-4 ml-4">
                     {% for item in menu_items %}
@@ -63,12 +63,12 @@
 
     {% block banner %}{% endblock %}
 
-    <main class="max-w-4xl mx-auto px-4 py-8 w-full flex-1">
+    <main class="max-w-7xl mx-auto px-4 py-8 w-full flex-1">
         {% block content %}{% endblock %}
     </main>
 
     <footer class="border-t border-solid mt-auto">
-        <div class="max-w-4xl mx-auto px-4 py-6">
+        <div class="max-w-7xl mx-auto px-4 py-6">
             {% block footer %}
             <p class="text-center text-sm opacity-75">&copy; {{ site_name }}</p>
             {% endblock %}
