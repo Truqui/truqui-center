@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Teams — {{ site_name }}{% endblock %}
+
+{% block banner %}
+<div class="w-full bg-primary">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-bold text-background">Teams</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{% if active_teams or inactive_teams %}
+
+{% if active_teams %}
+<section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Active</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for team in active_teams %}
+        {% include "teams/_team_card.html" %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% if inactive_teams %}
+<section>
+    <h2 class="text-3xl font-semibold mb-4">Inactive</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for team in inactive_teams %}
+        {% include "teams/_team_card.html" %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% else %}
+<p class="text-muted">No teams registered yet.</p>
+{% endif %}
+{% endblock %}

@@ -28,6 +28,7 @@ THEME = {
     "surface_border": os.environ.get("THEME_SURFACE_BORDER", "#e5e7eb"),
     "surface": os.environ.get("THEME_SURFACE", "#555555"),
     "surface_fg": os.environ.get("THEME_SURFACE_FG", "#ffffff"),
+    "card": os.environ.get("THEME_CARD", "#ffffff"),
     "font_family": os.environ.get("THEME_FONT_FAMILY", ""),
 }
 
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     "src.infrastructure.database.menu",
     "src.infrastructure.database.blog",
     "src.infrastructure.database.settings",
+    "src.infrastructure.database.teams",
 ]
 
 MIDDLEWARE = [

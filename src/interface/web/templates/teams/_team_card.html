@@ -1,0 +1,23 @@
+<div class="border border-border rounded-lg overflow-hidden bg-card{% if not team.is_active %} opacity-75{% endif %}">
+    {% if team.crest %}
+    <div class="w-full overflow-hidden aspect-square bg-card">
+        <img src="{{ team.crest.url }}" alt="{{ team.name }}" loading="lazy" class="w-full h-full object-contain{% if not team.is_active %} grayscale{% endif %}">
+    </div>
+    {% endif %}
+    <div class="p-6 text-center">
+        <h3 class="text-xl font-semibold mb-1">{{ team.name }}</h3>
+        <p class="text-muted mb-2">{{ team.coach }}</p>
+        {% if team.motto %}
+        <p class="italic text-sm text-muted mb-2">&ldquo;{{ team.motto }}&rdquo;</p>
+        {% endif %}
+        {% if team.stadium %}
+        <p class="text-sm text-muted">Stadium: {{ team.stadium }}</p>
+        {% endif %}
+        {% if team.fans_name %}
+        <p class="text-sm text-muted">Fans: {{ team.fans_name }}</p>
+        {% endif %}
+        {% if team.country %}
+        <p class="text-sm text-muted">Country: {{ team.country }}</p>
+        {% endif %}
+    </div>
+</div>
