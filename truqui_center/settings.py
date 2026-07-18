@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "src.infrastructure.database.menu",
     "src.infrastructure.database.blog",
     "src.infrastructure.database.settings",
+    "src.infrastructure.database.teams",
 ]
 
 MIDDLEWARE = [
