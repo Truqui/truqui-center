@@ -89,6 +89,29 @@ The navigation bar is driven by `MenuItem` records. To expose the blog page in t
 
 ---
 
+### Teams
+
+A registry of football teams is available at:
+
+| URL | View | Description |
+|---|---|---|
+| `/teams/` | `TeamListView` | Card-based listing of teams, grouped into Active and Inactive |
+
+Teams are managed via the Django admin (`/admin/` → **Teams**). Name, coach, crest and status (**Is active**) are required; stadium, motto, fans name and country are optional and simply omitted from the card when left blank.
+
+#### Adding Teams to the navigation menu
+
+To expose the teams page in the navigation bar, create a `MenuItem` entry via the Django admin:
+
+1. Go to `/admin/` → **Menu items** → **Add menu item**.
+2. Set **Label** to the text you want in the nav (e.g. `Teams`).
+3. Set **URL** to `/teams/`.
+4. Set **Order** to control its position relative to other items.
+5. Make sure **Is active** is checked.
+6. Save.
+
+---
+
 ## CSS development
 
 Tailwind CSS is compiled ahead of time — the project does **not** use the Tailwind CDN. The compiled stylesheet is committed to the repository at `src/interface/web/static/css/styles.css`.
