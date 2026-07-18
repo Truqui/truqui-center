@@ -164,6 +164,7 @@ All CSS goes through `src/interface/web/static/css/input.css`. Add hand-written 
 | `THEME_MUTED` | `#6b7280` | No | Muted text colour |
 | `THEME_BORDER` | `#e5e7eb` | No | Border colour |
 | `THEME_PRIMARY` | `#111827` | No | Primary/brand colour |
+| `THEME_CARD` | `#ffffff` | No | Card background colour (e.g. team listing cards) |
 
 ---
 

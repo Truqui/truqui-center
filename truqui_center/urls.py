@@ -24,6 +24,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("admin/", admin.site.urls),
     path("", include("src.interface.web.urls")),
     path("blog/", include("src.interface.web.blog.urls")),
+    path("teams/", include("src.interface.web.teams.urls")),
     path("", include("src.interface.web.page.urls")),
 ]
 
