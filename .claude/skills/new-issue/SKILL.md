@@ -16,53 +16,43 @@ Before asking anything, silently run:
 
 If `gh` is not authenticated, stop and tell the user to run `gh auth login` first.
 
-## Step 2 — Ask the issue type
+## Step 2 — Ask for a task description
 
-Ask the user: is this a **feature request** or a **bug report**?
+Ask the user for a free-text description of what they want, in their own words: a feature idea, a problem, a bug — whatever they have in mind. Do not ask about type, title, or structure yet.
 
-## Step 3 — Read the relevant template
+## Step 3 — Infer the issue
 
-Based on the answer, silently read only the corresponding file:
+From the description, infer:
+- **Type**: feature request or bug report
+- **Title**: a short, descriptive title
+- **Problem**: the problem to solve (feature) or the actual-vs-expected behavior (bug)
+- **High-level solution**: product-level only. Light technical framing is fine (e.g. "add a way to configure X from the admin"), but no implementation detail — no file paths, model/field definitions, class/module names, admin/queries/views specifics.
+
+If the description doesn't give enough to infer one or more of these with reasonable confidence, ask a targeted follow-up for each gap, keeping them to a minimum — don't fall back to a full one-by-one questionnaire.
+
+## Step 4 — Read the relevant template
+
+Based on the inferred type, silently read only the corresponding file:
 - Feature → `.github/ISSUE_TEMPLATE/feature_request.md`
 - Bug → `.github/ISSUE_TEMPLATE/bug_report.md`
 
 This defines the exact structure to use when drafting. Do not hardcode any template structure in this skill.
 
-## Step 4 — Gather the remaining information
+## Step 5 — Draft the issue
 
-Ask these questions one by one in a conversational way. Do not dump them all at once.
+Using the template read in Step 4, generate the full issue body filling in all sections. Strip out the HTML comments (`<!-- ... -->`).
 
-Depending on type:
+The issue must describe the problem and a high-level solution only — no technical implementation details (no file paths, model/field definitions, class names, admin/queries/views specifics, etc.). Those decisions belong in the planning step once work on the issue starts, not in the issue itself.
 
-   **If feature:**
-   - What problem does this feature solve? Who is affected?
-   - Do you have an idea for the implementation, or should I propose one based on the code?
+The conversation with the user can be in any language, but the issue title and body must always be written in English.
 
-   **If bug:**
-   - What happens vs. what should happen?
-   - What are the steps to reproduce it?
+## Step 6 — Review and confirm
 
-3. **Title**: Ask for a short, descriptive title for the issue.
-
-## Step 5 — Analyse the code
-
-Silently explore the project structure to understand the relevant code. Read files like models.py, views.py, urls.py, serializers.py, etc. that seem related to what the user described. If you are unsure where to look, ask the user: "¿Tienes algún archivo o módulo concreto en mente, o prefieres que lo explore yo?".
-
-## Step 6 — Draft the issue
-
-Using the template read in Step 3, generate the full issue body filling in all sections. Strip out the HTML comments (`<!-- ... -->`). If the user said they have no implementation idea, propose one based on what you found in the code.
-
----
-
-## Step 7 — Review and confirm
-
-Show the user the complete draft with title and body. Ask:
-
-> ¿Te parece bien este borrador o quieres hacer algún cambio antes de publicarlo?
+Show the user the complete draft with title and body, including the inferred type. Ask (in the language of the conversation) whether the draft looks good or needs changes before publishing. If the inferred type was wrong, redo Steps 4–5 with the correct template.
 
 Wait for explicit approval. Allow the user to request edits and regenerate before proceeding.
 
-## Step 8 — Publish to GitHub
+## Step 7 — Publish to GitHub
 
 Once the user approves, run:
 
