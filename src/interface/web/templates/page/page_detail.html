@@ -6,6 +6,12 @@
     <img src="{{ page.banner.url }}" alt="{{ page.title }}"
          class="w-full h-full object-cover">
 </div>
+{% else %}
+<div class="w-full bg-banner">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-bold text-background">{{ page.title }}</h1>
+    </div>
+</div>
 {% endif %}
 {% endblock %}
 
@@ -13,7 +19,9 @@
 
 {% block content %}
 <article>
+    {% if page.banner %}
     <h1 class="text-3xl font-bold mb-4">{{ page.title }}</h1>
+    {% endif %}
     {% if page.description %}
     <p class="text-muted mb-6">{{ page.description }}</p>
     {% endif %}

@@ -25,6 +25,7 @@ THEME = {
     "muted": os.environ.get("THEME_MUTED", "#6b7280"),
     "border": os.environ.get("THEME_BORDER", "#e5e7eb"),
     "primary": os.environ.get("THEME_PRIMARY", "#111827"),
+    "banner": os.environ.get("THEME_BANNER", "#111827"),
     "surface_border": os.environ.get("THEME_SURFACE_BORDER", "#e5e7eb"),
     "surface": os.environ.get("THEME_SURFACE", "#555555"),
     "surface_fg": os.environ.get("THEME_SURFACE_FG", "#ffffff"),
