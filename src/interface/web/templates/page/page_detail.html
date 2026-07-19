@@ -17,6 +17,6 @@
     {% if page.description %}
     <p class="text-muted mb-6">{{ page.description }}</p>
     {% endif %}
-    <div>{{ page.content|linebreaks }}</div>
+    <div>{{ page.content|safe }}</div>
 </article>
 {% endblock %}
