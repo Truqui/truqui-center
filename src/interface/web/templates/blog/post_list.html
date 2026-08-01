@@ -3,11 +3,7 @@
 {% block title %}Blog — {{ site_name }}{% endblock %}
 
 {% block banner %}
-<div class="w-full bg-banner">
-    <div class="max-w-7xl mx-auto px-4 py-12">
-        <h1 class="text-4xl font-bold text-background">Blog</h1>
-    </div>
-</div>
+{% include "_banner.html" with title="Blog" %}
 {% endblock %}
 
 {% block content %}

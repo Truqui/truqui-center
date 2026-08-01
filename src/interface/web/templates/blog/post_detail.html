@@ -7,11 +7,7 @@
          class="w-full h-full object-cover">
 </div>
 {% else %}
-<div class="w-full bg-banner">
-    <div class="max-w-7xl mx-auto px-4 py-12">
-        <h1 class="text-4xl font-bold text-background">{{ post.title }}</h1>
-    </div>
-</div>
+{% include "_banner.html" with title=post.title %}
 {% endif %}
 {% endblock %}
 
