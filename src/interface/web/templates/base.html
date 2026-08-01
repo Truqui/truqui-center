@@ -25,18 +25,18 @@
         --color-main-border: {{ theme.main_border }};
         {% if theme.font_family %}--default-font-family: {{ theme.font_family }};{% endif %}
       }
-      nav, body > footer {
+      .site-nav, .site-footer {
         background-color: var(--color-surface);
         color: var(--color-surface-fg);
         border-color: var(--color-surface-border);
       }
-      nav a.nav-item {
+      .site-nav a.nav-item {
         opacity: 0.75;
         transition: opacity 0.15s, background-color 0.15s;
       }
-      nav a.nav-item:hover { opacity: 1; background-color: color-mix(in srgb, var(--color-surface-fg) 12%, transparent); }
-      nav a.nav-item.active { opacity: 1; background-color: var(--color-nav-active); }
-      nav > div { border-color: var(--color-surface-border); }
+      .site-nav a.nav-item:hover { opacity: 1; background-color: color-mix(in srgb, var(--color-surface-fg) 12%, transparent); }
+      .site-nav a.nav-item.active { opacity: 1; background-color: var(--color-nav-active); }
+      .site-nav > div { border-color: var(--color-surface-border); }
       main {
         background-color: var(--color-main-bg);
         border-color: var(--color-main-border);
@@ -48,7 +48,7 @@
 <body class="bg-background text-foreground min-h-screen flex flex-col">
 
     <header>
-        <nav class="border-b" x-data="{ open: false }">
+        <nav class="site-nav border-b" x-data="{ open: false }">
             <div class="max-w-7xl mx-auto px-4 flex items-stretch">
                 <a href="/" class="font-semibold hover:opacity-75 transition-opacity flex items-center py-3">{{ site_name }}</a>
                 <div class="hidden md:flex items-stretch ml-8">
@@ -79,7 +79,7 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="border-t border-solid mt-auto">
+    <footer class="site-footer border-t border-solid mt-auto">
         <div class="max-w-7xl mx-auto px-4 py-6">
             {% block footer %}
             <p class="text-center text-sm opacity-75">&copy; {{ site_name }}</p>
