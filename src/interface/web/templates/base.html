@@ -15,20 +15,33 @@
         --color-muted: {{ theme.muted }};
         --color-border: {{ theme.border }};
         --color-primary: {{ theme.primary }};
+        --color-banner: {{ theme.banner }};
+        --color-banner-fg: {{ theme.banner_fg }};
         --color-surface-border: {{ theme.surface_border }};
         --color-surface: {{ theme.surface }};
         --color-surface-fg: {{ theme.surface_fg }};
+        --color-nav-active: {{ theme.nav_active }};
         --color-card: {{ theme.card }};
+        --color-main-bg: {{ theme.main_bg }};
+        --color-main-border: {{ theme.main_border }};
         {% if theme.font_family %}--default-font-family: {{ theme.font_family }};{% endif %}
       }
-      nav, footer {
+      .site-nav, .site-footer {
         background-color: var(--color-surface);
         color: var(--color-surface-fg);
         border-color: var(--color-surface-border);
       }
-      nav a.nav-item { opacity: 0.75; transition: opacity 0.15s; }
-      nav a.nav-item:hover, nav a.nav-item.active { opacity: 1; }
-      nav > div { border-color: var(--color-surface-border); }
+      .site-nav a.nav-item {
+        opacity: 0.75;
+        transition: opacity 0.15s, background-color 0.15s;
+      }
+      .site-nav a.nav-item:hover { opacity: 1; background-color: color-mix(in srgb, var(--color-surface-fg) 12%, transparent); }
+      .site-nav a.nav-item.active { opacity: 1; background-color: var(--color-nav-active); }
+      .site-nav > div { border-color: var(--color-surface-border); }
+      main {
+        background-color: var(--color-main-bg);
+        border-color: var(--color-main-border);
+      }
     </style>
     <script src="{% static 'js/htmx.min.js' %}"></script>
     <script defer src="{% static 'js/alpine.min.js' %}"></script>
@@ -36,15 +49,15 @@
 <body class="bg-background text-foreground min-h-screen flex flex-col">
 
     <header>
-        <nav class="border-b" x-data="{ open: false }">
-            <div class="max-w-7xl mx-auto px-4 py-3 flex items-center">
-                <a href="/" class="font-semibold hover:opacity-75 transition-opacity">{{ site_name }}</a>
-                <div class="hidden md:flex gap-4 ml-4">
+        <nav class="site-nav border-b" x-data="{ open: false }">
+            <div class="max-w-7xl mx-auto px-4 flex items-stretch">
+                <a href="/" class="font-semibold hover:opacity-75 transition-opacity flex items-center py-3">{{ site_name }}</a>
+                <div class="hidden md:flex items-stretch ml-8">
                     {% for item in menu_items %}
-                    <a href="{{ item.url }}" class="nav-item{% if request.path == item.url %} active{% endif %}">{{ item.label }}</a>
+                    <a href="{{ item.url }}" class="nav-item flex items-center px-5{% if request.path == item.url %} active{% endif %}">{{ item.label }}</a>
                     {% endfor %}
                 </div>
-                <button class="md:hidden ml-auto" @click="open = !open" aria-label="Menú">
+                <button class="md:hidden ml-auto flex items-center py-3" @click="open = !open" aria-label="Menú">
                     <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -53,9 +66,9 @@
                     </svg>
                 </button>
             </div>
-            <div x-show="open" class="md:hidden border-t px-4 py-3 flex flex-col gap-3">
+            <div x-show="open" class="md:hidden border-t px-4 py-3 flex flex-col">
                 {% for item in menu_items %}
-                <a href="{{ item.url }}" class="nav-item{% if request.path == item.url %} active{% endif %}">{{ item.label }}</a>
+                <a href="{{ item.url }}" class="nav-item px-4 py-3{% if request.path == item.url %} active{% endif %}">{{ item.label }}</a>
                 {% endfor %}
             </div>
         </nav>
@@ -63,11 +76,11 @@
 
     {% block banner %}{% endblock %}
 
-    <main class="max-w-7xl mx-auto px-4 py-8 w-full flex-1">
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-8 w-full my-12 border-y sm:border rounded-none sm:rounded-lg">
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="border-t border-solid mt-auto">
+    <footer class="site-footer border-t border-solid mt-auto">
         <div class="max-w-7xl mx-auto px-4 py-6">
             {% block footer %}
             <p class="text-center text-sm opacity-75">&copy; {{ site_name }}</p>

@@ -187,6 +187,11 @@ All CSS goes through `src/interface/web/static/css/input.css`. Add hand-written 
 | `THEME_MUTED` | `#6b7280` | No | Muted text colour |
 | `THEME_BORDER` | `#e5e7eb` | No | Border colour |
 | `THEME_PRIMARY` | `#111827` | No | Primary/brand colour |
+| `THEME_BANNER` | `#555555` | No | Page banner background colour |
+| `THEME_BANNER_FG` | `#ffffff` | No | Page banner title text colour |
+| `THEME_MAIN_BG` | `#ffffff` | No | Main content box background colour |
+| `THEME_MAIN_BORDER` | `#e5e7eb` | No | Main content box border colour |
+| `THEME_NAV_ACTIVE` | `#111827` | No | Active nav item background colour |
 | `THEME_CARD` | `#ffffff` | No | Card background colour (e.g. team listing cards) |
 
 ---

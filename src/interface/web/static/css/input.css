@@ -25,5 +25,10 @@
   --color-muted: #6b7280;
   --color-border: #e5e7eb;
   --color-primary: #111827;
+  --color-banner: #555555;
+  --color-banner-fg: #ffffff;
   --color-card: #ffffff;
+  --color-main-bg: #ffffff;
+  --color-main-border: #e5e7eb;
+  --color-nav-active: #111827;
 }
