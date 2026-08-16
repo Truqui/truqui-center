@@ -49,12 +49,12 @@
 <body class="bg-background text-foreground min-h-screen flex flex-col">
 
     <header>
-        <nav class="site-nav border-b" x-data="{ open: false }">
+        <nav class="site-nav border-b" x-data="{ open: false, isActive(url) { const norm = (p) => p.replace(/\/+$/, '') || '/'; return norm(window.location.pathname) === norm(url) } }">
             <div class="max-w-7xl mx-auto px-4 flex items-stretch">
                 <a href="/" class="font-semibold hover:opacity-75 transition-opacity flex items-center py-3">{{ site_name }}</a>
                 <div class="hidden md:flex items-stretch ml-8">
                     {% for item in menu_items %}
-                    <a href="{{ item.url }}" class="nav-item flex items-center px-5{% if request.path == item.url %} active{% endif %}">{{ item.label }}</a>
+                    <a href="{{ item.url }}" class="nav-item flex items-center px-5" :class="{ active: isActive('{{ item.url|escapejs }}') }">{{ item.label }}</a>
                     {% endfor %}
                 </div>
                 <button class="md:hidden ml-auto flex items-center py-3" @click="open = !open" aria-label="Menú">
@@ -68,7 +68,7 @@
             </div>
             <div x-show="open" class="md:hidden border-t px-4 py-3 flex flex-col">
                 {% for item in menu_items %}
-                <a href="{{ item.url }}" class="nav-item px-4 py-3{% if request.path == item.url %} active{% endif %}">{{ item.label }}</a>
+                <a href="{{ item.url }}" class="nav-item px-4 py-3" :class="{ active: isActive('{{ item.url|escapejs }}') }">{{ item.label }}</a>
                 {% endfor %}
             </div>
         </nav>
